@@ -1,0 +1,7 @@
+<div
+  class="row row-cols-1 row-cols-xl-4 row-cols-lg-3 g-3 row-cols-sm-2 mx-2 mt-3"
+>
+  @for (product of products; track $index) {
+  <app-user-card [product]="product"></app-user-card>
+  }
+</div>
