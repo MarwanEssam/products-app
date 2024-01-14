@@ -1,1 +1,61 @@
-<p>login works!</p>
+<div
+  class="container w-100 d-flex flex-column align-items-center justify-content-center"
+  style="height: 100vh"
+>
+  <h2>login</h2>
+  <form
+    class="border p-5 shadow w-50"
+    #loginForm="ngForm"
+    (ngSubmit)="loginSubmit(loginForm)"
+  >
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label text-center"
+        >Email Address</label
+      >
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        name="email"
+        ngModel
+        placeholder="Enter your Email"
+        required
+        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3}$"
+        #email="ngModel"
+      />
+      @if (email.invalid && email.touched) { @if (email.errors?.['required']) {
+      <small class="d-block text-danger">This field is required</small>
+      } @if (email.errors?.['pattern']) {
+      <small class="d-block text-danger">Enter a valid email</small>
+      }}
+    </div>
+    <div class="mb-4">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        placeholder="Enter your password"
+        name="password"
+        ngModel
+        required
+        #password="ngModel"
+      />
+      @if (password.invalid && password.touched) { @if
+      (password.errors?.['required']) {
+      <small class="d-block text-danger">This field is required</small>
+      } }
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary d-block my-4 px-4 w-100 fw-medium"
+    >
+      Login
+    </button>
+
+    <a routerLink="/register" class="text-primary"
+      >Don't have an account register here</a
+    >
+  </form>
+</div>

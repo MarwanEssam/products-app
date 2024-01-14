@@ -1,1 +1,101 @@
-<p>register works!</p>
+<div
+  class="container w-100 d-flex flex-column align-items-center justify-content-center"
+  style="height: 100vh"
+>
+  <h2>Register</h2>
+  <form
+    class="border p-5 shadow w-50"
+    [formGroup]="registerForm"
+    (ngSubmit)="loginSubmit()"
+  >
+    <div class="mb-3">
+      <label for="name" class="form-label text-center">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        formControlName="fullName"
+      />
+      @if (registerForm.controls['fullName'].invalid &&
+      registerForm.controls['fullName'].touched){
+      <small class="d-block text-danger">This field is required</small>
+      }
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label text-center">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        aria-describedby="emailHelp"
+        formControlName="userEmail"
+      />
+      @if (registerForm.controls['userEmail'].invalid &&
+      registerForm.controls['userEmail'].touched) { @if
+      (registerForm.controls['userEmail'].errors?.['required']) {
+      <small class="d-block text-danger">This field is required</small>
+      } @if (registerForm.controls['userEmail'].errors?.['pattern']) {
+      <small class="d-block text-danger">Enter a valid email</small>
+      } }
+    </div>
+    <div class="mb-3">
+      <label for="userName" class="form-label text-center">User Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="userName"
+        formControlName="userName"
+      />
+      @if (registerForm.controls['userName'].invalid &&
+      registerForm.controls['userName'].touched) { @if
+      (registerForm.controls['userName'].errors?.['required']) {
+      <small class="d-block text-danger">This field is required</small>
+      } @if (registerForm.controls['userName'].errors?.['pattern']) {
+      <small class="d-block text-danger">Your username can't have spaces</small>
+      } }
+    </div>
+    <div class="mb-4">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        formControlName="userPassword"
+      />
+      @if (registerForm.controls['userPassword'].invalid &&
+      registerForm.controls['userPassword'].touched) { @if
+      (registerForm.controls['userPassword'].errors?.['required']) {
+      <small class="d-block text-danger">This field is required</small>
+      } @if (registerForm.controls['userPassword'].errors?.['pattern']) {
+      <small class="d-block text-danger"
+        >Your password must contain at least 8 characters, one lowercase , one
+        uppercase , at least one digit and special character</small
+      >
+      } }
+    </div>
+    <div class="mb-4">
+      <label for="confirmPassword" class="form-label">Confirm Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="confirmPassword"
+        formControlName="confirmPassword"
+      />
+    </div>
+    @if (registerForm.errors?.['passwordMismatch']) {
+    <small class="d-block text-danger">Your passwords don't match</small>
+    } @if (registerForm.controls['confirmPassword'].invalid &&
+    registerForm.controls['confirmPassword'].touched) { @if
+    (registerForm.controls['confirmPassword'].errors?.['required']) {
+    <small class="d-block text-danger">This field is required</small>
+    } }
+    <button
+      type="submit"
+      class="btn btn-primary d-block my-4 px-4 w-100 fw-medium"
+    >
+      Register
+    </button>
+
+    <a routerLink="/login" class="text-primary">Already a user login here</a>
+  </form>
+</div>
