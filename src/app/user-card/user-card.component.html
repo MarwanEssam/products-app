@@ -5,7 +5,8 @@
         [src]="product.thumbnail"
         class="card-img-top"
         alt=""
-        style="height: 15rem"
+        style="height: 15rem; cursor: pointer"
+        (click)="productDetails(product.id)"
       />
     </div>
     <span
@@ -29,10 +30,7 @@
       <h5 class="card-text">Price: {{ product.price }}$</h5>
     </div>
     <div class="text-center mb-2">
-      <button
-        class="btn btn-success card-link my-md-1 me-1 px-3 rounded-pill"
-        (click)="productDetails(product.id)"
-      >
+      <button class="btn btn-success card-link my-md-1 me-1 px-3 rounded-pill">
         Add to Cart
       </button>
     </div>

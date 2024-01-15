@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import * as prdouctsList from '../../assets/products.json';
-
+import { ProductsService } from '../services/products.service';
 @Component({
   selector: 'app-user-details',
   standalone: true,
@@ -10,13 +9,16 @@ import * as prdouctsList from '../../assets/products.json';
   styleUrl: './user-details.component.css',
 })
 export class UserDetailsComponent {
-  constructor(private activatedRoute: ActivatedRoute) {}
-  data: any = prdouctsList;
-  products!: any;
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private productService: ProductsService
+  ) {}
   product: any;
+  id!: number;
   ngOnInit() {
-    this.products = this.data.default;
-    const id = this.activatedRoute.snapshot.params['id'];
-    this.product = this.products.find((product: any) => product.id == id);
+    this.id = this.activatedRoute.snapshot.params['id'];
+    this.productService
+      .getSingleProduct(this.id)
+      .subscribe((res) => (this.product = res));
   }
 }

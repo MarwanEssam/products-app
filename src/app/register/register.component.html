@@ -81,14 +81,14 @@
         id="confirmPassword"
         formControlName="confirmPassword"
       />
+      @if (registerForm.errors?.['passwordMismatch']) {
+      <small class="d-block text-danger">Your passwords don't match</small>
+      } @if (registerForm.controls['confirmPassword'].invalid &&
+      registerForm.controls['confirmPassword'].touched) { @if
+      (registerForm.controls['confirmPassword'].errors?.['required']) {
+      <small class="d-block text-danger">This field is required</small>
+      } }
     </div>
-    @if (registerForm.errors?.['passwordMismatch']) {
-    <small class="d-block text-danger">Your passwords don't match</small>
-    } @if (registerForm.controls['confirmPassword'].invalid &&
-    registerForm.controls['confirmPassword'].touched) { @if
-    (registerForm.controls['confirmPassword'].errors?.['required']) {
-    <small class="d-block text-danger">This field is required</small>
-    } }
     <button
       type="submit"
       class="btn btn-primary d-block my-4 px-4 w-100 fw-medium"
