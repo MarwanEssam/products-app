@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { CartComponent } from '../cart/cart.component';
+import { CartCountService } from '../services/cart-count.service';
 
 @Component({
   selector: 'app-header',
@@ -8,4 +10,12 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  counter: number = 0;
+  constructor(private cartCountService: CartCountService) {}
+  ngOnInit() {
+    this.cartCountService
+      .getCounter()
+      .subscribe((value) => (this.counter = value));
+  }
+}

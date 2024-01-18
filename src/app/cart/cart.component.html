@@ -1,1 +1,34 @@
-<p>cart works!</p>
+<div class="container">
+  <h3>Cart items</h3>
+  <ul>
+    @for (item of _cartCountService.getItems(); track item.id) {
+    <li class="d-flex justify-content-around mb-2 bg-light align-items-center">
+      <div>
+        <img [src]="item.thumbnail" alt="" style="width: 5rem; height: 5rem" />
+      </div>
+      <div style="max-width: 4rem">{{ item.title }}</div>
+      <div style="max-width: 4rem">${{ item.price }}</div>
+      <div style="max-width: 4rem">{{ item.quantity }}</div>
+
+      <button
+        class="btn btn-danger"
+        (click)="_cartCountService.decrementQuantity(item.id)"
+      >
+        -
+      </button>
+      <button
+        class="btn btn-success"
+        (click)="_cartCountService.incrementQuantity(item.id)"
+      >
+        +
+      </button>
+      <button class="btn btn-danger" (click)="deleteFromCart(item)">
+        Delete
+      </button>
+    </li>
+    }
+    <li>
+      <h4>Total: {{ _cartCountService.getTotal() }}</h4>
+    </li>
+  </ul>
+</div>
